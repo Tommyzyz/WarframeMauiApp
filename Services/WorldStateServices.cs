@@ -10,6 +10,8 @@ public class WorldStateServices
 
     public earthCycle earthCyclestate;
     public cetusCycle cetusCyclestate;
+    private Uri earthUri = new("https://api.warframestat.us/pc/earthCycle/");
+    private Uri cetusUri = new("https://api.warframestat.us/pc/cetusCycle/");
 
 
     public WorldStateServices(HttpClient httpClient)
