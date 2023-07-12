@@ -23,47 +23,49 @@ public partial class MainViewModel : BaseViewModel
 
     private void Timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
     {
-        EarthTimeLeft--;
-        CetusTimeLeft--;
-        if (EarthTimeLeft == 1)
+        if (_earthTimeLeft <= 0)
         {
             GetEarthStateAsync();
         }
-        if (CetusTimeLeft == 1)
+        if (_cetusTimeLeft <= 0)
         {
             GetCetusStateAsync();
         }
-        EarthTimeLiftString = TimeConverter.SecondstoTimesString(EarthTimeLeft);
-        CetusTimeLiftString = TimeConverter.SecondstoTimesString(CetusTimeLeft);
+        EarthTimeLeftString = UpdateTimeLift(ref _earthTimeLeft);
+        CetusTimeLeftString = UpdateTimeLift(ref _cetusTimeLeft);
+
+        //EarthTimeLeft--;
+        //CetusTimeLeft--;
+
+        //EarthTimeLiftString = TimeConverter.SecondstoTimesString(EarthTimeLeft);
+        //CetusTimeLiftString = TimeConverter.SecondstoTimesString(CetusTimeLeft);
+
 
     }
 
-    [ObservableProperty]
+    private string UpdateTimeLift(ref int TimeLeft)
+    {
+        TimeLeft--;
+        return TimeConverter.SecondstoTimesString(TimeLeft);
+    }
+
+
     private int _earthTimeLeft;
 
-    [ObservableProperty]
     private int _cetusTimeLeft;
 
     [ObservableProperty]
-    private string _earthTimeLiftString;
+    public string _earthTimeLeftString;
 
     [ObservableProperty]
-    private string _cetusTimeLiftString;
+    public string _cetusTimeLeftString;
 
-    [ObservableProperty]
-    private string cetusCycleState;
 
-    [ObservableProperty]
-    public string worldState;
-
-    [ObservableProperty]
-    string text = "Hello";
 
     public async Task GetAllWorldStateAsync()
     {
         await Services.UpdateEarthState();
         await Services.UpdateCetusState();
-
         _earthTimeLeft = TimeConverter.getliftSeconds(Services.earthCyclestate.timeLeft);
         _cetusTimeLeft = TimeConverter.getliftSeconds(Services.cetusCyclestate.timeLeft);
 

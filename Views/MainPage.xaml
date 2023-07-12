@@ -9,9 +9,9 @@
         <Image Grid.Column="1" Grid.Row="0" BackgroundColor="Aquamarine"
             Source="warframe.png"/>
         <Label Grid.Row="1" Grid.Column="0" 
-               Text="{Binding EarthTimeLiftString, StringFormat='地球:{0}'}"/>
+               Text="{Binding EarthTimeLeftString, StringFormat='地球:{0}'}"/>
         <Label Grid.Row="1" Grid.Column="1"
-               Text="{Binding CetusTimeLiftString, StringFormat='希图斯:{0}'}"/>
+               Text="{Binding CetusTimeLeftString, StringFormat='希图斯:{0}'}"/>
 
     </Grid>
 

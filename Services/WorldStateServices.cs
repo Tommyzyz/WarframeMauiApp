@@ -10,23 +10,15 @@ public class WorldStateServices
 
     public earthCycle earthCyclestate;
     public cetusCycle cetusCyclestate;
+    public cambionCycle cambionCyclestate;
 
 
 
     public WorldStateServices(HttpClient httpClient)
     {
         this.httpClient = httpClient;
-        UpdateAllState();
-
-
     }
 
-
-    private async Task UpdateAllState()
-    {
-        await UpdateEarthState();
-        await UpdateCetusState();
-    }
 
     public async Task UpdateEarthState()
     {
@@ -36,6 +28,11 @@ public class WorldStateServices
     public async Task UpdateCetusState()
     {
         cetusCyclestate = await GetWorldDateAsync<cetusCycle>(WarframeAPIUri.cetusUri);
+    }
+
+    public async Task UpdatecambionState()
+    {
+        cambionCyclestate = await GetWorldDateAsync<cambionCycle>(WarframeAPIUri.cambionUri);
     }
 
 
