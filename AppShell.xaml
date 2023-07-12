@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="WarframeMauiApp.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:WarframeMauiApp"
+    xmlns:views="clr-namespace:WarframeMauiApp.Views">
+
+    <ShellContent
+        Title="Main"
+        ContentTemplate="{DataTemplate views:MainPage}"
+        Icon="iconblank.png"
+        Route="MainPage"
+        Shell.NavBarIsVisible="true" />
+    <ShellContent
+        Title="Localization"
+        ContentTemplate="{DataTemplate views:LocalizationPage}"
+        Icon="iconlocalization.png"
+        Route="LocalizationPage"
+        Shell.NavBarIsVisible="true" />
+    <ShellContent
+        Title="ListDetail"
+        ContentTemplate="{DataTemplate views:ListDetailPage}"
+        Icon="iconlistdetail.png"
+        Route="ListDetailPage"
+        Shell.NavBarIsVisible="true" />
+</Shell>
