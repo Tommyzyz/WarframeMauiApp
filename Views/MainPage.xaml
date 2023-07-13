@@ -4,7 +4,7 @@
 			 xmlns:vm="clr-namespace:WarframeMauiApp.ViewModels"
 			 x:Class="WarframeMauiApp.Views.MainPage"
 			 x:DataType="vm:MainViewModel">
-    <Grid RowDefinitions="*,*"
+    <Grid RowDefinitions="*,*,*"
           ColumnDefinitions="*,*,*">
         <Image Grid.Column="1" Grid.Row="0" BackgroundColor="Aquamarine"
             Source="warframe.png"/>
@@ -12,6 +12,12 @@
                Text="{Binding EarthTimeLeftString, StringFormat='地球:{0}'}"/>
         <Label Grid.Row="1" Grid.Column="1"
                Text="{Binding CetusTimeLeftString, StringFormat='希图斯:{0}'}"/>
+        <Label Grid.Row="1" Grid.Column="2"
+               Text="{Binding CambionTimeLeftString, StringFormat='火卫二:{0}'}"/>
+        <Label Grid.Row="2" Grid.Column="0"
+               Text="{Binding VallisTimeLeftString, StringFormat='金星:{0}'}"/>
+        <Label Grid.Row="2" Grid.Column="1"
+               Text="{Binding ZarimanTimeLeftString, StringFormat='扎里曼{0}'}"/>
 
     </Grid>
 

@@ -5,20 +5,28 @@ namespace WarframeMauiApp.Services;
 
 public class WorldStateServices
 {
-
+    public WorldStateServices(HttpClient httpClient)
+    {
+        this.httpClient = httpClient;
+    }
     public readonly HttpClient httpClient;
 
     public earthCycle earthCyclestate;
     public cetusCycle cetusCyclestate;
     public cambionCycle cambionCyclestate;
+    public vallisCycle vallisCyclestate;
+    public zarimanCycle zarimanCyclestate;
 
 
-
-    public WorldStateServices(HttpClient httpClient)
+    public async Task UpdateZarimanState()
     {
-        this.httpClient = httpClient;
+        zarimanCyclestate = await GetWorldDateAsync<zarimanCycle>(WarframeAPIUri.zarimanCycle);
     }
 
+    public async Task UpdateVallisState()
+    {
+        vallisCyclestate = await GetWorldDateAsync<vallisCycle>(WarframeAPIUri.vallisCycle);
+    }
 
     public async Task UpdateEarthState()
     {
@@ -30,7 +38,7 @@ public class WorldStateServices
         cetusCyclestate = await GetWorldDateAsync<cetusCycle>(WarframeAPIUri.cetusUri);
     }
 
-    public async Task UpdatecambionState()
+    public async Task UpdateCambionState()
     {
         cambionCyclestate = await GetWorldDateAsync<cambionCycle>(WarframeAPIUri.cambionUri);
     }
