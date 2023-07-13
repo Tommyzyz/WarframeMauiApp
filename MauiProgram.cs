@@ -38,8 +38,8 @@ public static class MauiProgram
         #endregion
 
 
-        builder.Services.AddSingleton<HttpClient>();
-        builder.Services.AddSingleton<WorldStateServices>();
+        //builder.Services.AddSingleton<HttpClient>();
+        builder.Services.AddSingleton<WarfrmeClinetServices>();
 
         return builder.Build();
 	}

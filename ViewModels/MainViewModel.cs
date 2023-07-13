@@ -1,74 +1,115 @@
 ﻿using System.Timers;
-using WarframeMauiApp.Models;
+
 
 namespace WarframeMauiApp.ViewModels;
 
 public partial class MainViewModel : BaseViewModel
 {
 
-    WorldStateServices Services
-    {
-        get; set;
-    }
+    private WarfrmeClinetServices Services { get; set; }
 
-    public MainViewModel(WorldStateServices services)
+    public MainViewModel(WarfrmeClinetServices services)
     {
         Services = services;
-        GetAllWorldStateAsync();
-        System.Timers.Timer timer = new System.Timers.Timer();
+        //GetAllWorldStateAsync();
+        var timer = new System.Timers.Timer();
         timer.Interval = 1000;
         timer.Elapsed += Timer_Elapsed;
         timer.Start();
     }
 
-    private void Timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+    private async void Timer_Elapsed(object sender, ElapsedEventArgs e)
     {
         if (_earthTimeLeft <= 0)
         {
-            GetEarthStateAsync();
+            await GetEarthStateAsync();
         }
         if (_cetusTimeLeft <= 0)
         {
-            GetCetusStateAsync();
+            await GetCetusStateAsync();
         }
-        EarthTimeLeftString = UpdateTimeLift(ref _earthTimeLeft);
-        CetusTimeLeftString = UpdateTimeLift(ref _cetusTimeLeft);
-
-        //EarthTimeLeft--;
-        //CetusTimeLeft--;
-
-        //EarthTimeLiftString = TimeConverter.SecondstoTimesString(EarthTimeLeft);
-        //CetusTimeLiftString = TimeConverter.SecondstoTimesString(CetusTimeLeft);
-
+        if (_cambionTimeLeft <= 0)
+        {
+            await GetCambionStateAsync();
+        }
+        if (_vallisTimeLeft <= 0)
+        {
+            await GetVallisStateAsync();
+        }
+        if (_zarimanTimeLeft <= 0)
+        {
+            await GetZarimanStateAsync();
+        }
+        EarthTimeLeftString = TimeConverter.UpdateTimeLift(ref _earthTimeLeft);
+        CetusTimeLeftString = TimeConverter.UpdateTimeLift(ref _cetusTimeLeft);
+        CambionTimeLeftString = TimeConverter.UpdateTimeLift(ref _cambionTimeLeft);
+        VallisTimeLeftString = TimeConverter.UpdateTimeLift(ref _vallisTimeLeft);
+        ZarimanTimeLeftString = TimeConverter.UpdateTimeLift(ref _zarimanTimeLeft);
 
     }
 
-    private string UpdateTimeLift(ref int TimeLeft)
-    {
-        TimeLeft--;
-        return TimeConverter.SecondstoTimesString(TimeLeft);
-    }
+
+    #region 
 
 
-    private int _earthTimeLeft;
-
-    private int _cetusTimeLeft;
-
-    [ObservableProperty]
-    public string _earthTimeLeftString;
-
-    [ObservableProperty]
-    public string _cetusTimeLeftString;
+    #endregion
 
 
-
+    /*
     public async Task GetAllWorldStateAsync()
     {
         await Services.UpdateEarthState();
         await Services.UpdateCetusState();
+        await Services.UpdateCambionState();
+
         _earthTimeLeft = TimeConverter.getliftSeconds(Services.earthCyclestate.timeLeft);
         _cetusTimeLeft = TimeConverter.getliftSeconds(Services.cetusCyclestate.timeLeft);
+        _cambionTimeLeft = TimeConverter.getliftSeconds(Services.cambionCyclestate.timeLeft);
 
+    }*/
+
+    public async Task GetArchonHuntDataAsync()
+    {
+        await Services.UpdateArchonHuntdata();
+    }
+
+    //世界状态
+    #region
+    private int _earthTimeLeft = -1;
+
+    private int _cetusTimeLeft = -1;
+
+    private int _cambionTimeLeft = -1;
+
+    private int _vallisTimeLeft = -1;
+
+    private int _zarimanTimeLeft = -1;
+
+    [ObservableProperty]
+    private string _zarimanTimeLeftString;
+
+    [ObservableProperty]
+    private string _earthTimeLeftString;
+
+    [ObservableProperty]
+    private string _vallisTimeLeftString;
+
+    [ObservableProperty]
+    private string _cetusTimeLeftString;
+
+    [ObservableProperty]
+    private string _cambionTimeLeftString;
+
+    public async Task GetZarimanStateAsync()
+    {
+        await Services.UpdateZarimanState();
+        _zarimanTimeLeft = TimeConverter.getliftSeconds(Services.zarimanCyclestate.timeLeft);
+    }
+
+    public async Task GetVallisStateAsync()
+    {
+        await Services.UpdateVallisState();
+        _vallisTimeLeft = TimeConverter.getliftSeconds(Services.vallisCyclestate.timeLeft);
     }
 
     public async Task GetEarthStateAsync()
@@ -82,4 +123,11 @@ public partial class MainViewModel : BaseViewModel
         await Services.UpdateCetusState();
         _cetusTimeLeft = TimeConverter.getliftSeconds(Services.cetusCyclestate.timeLeft);
     }
+
+    public async Task GetCambionStateAsync()
+    {
+        await Services.UpdateCambionState();
+        _cambionTimeLeft = TimeConverter.getliftSeconds(Services.cambionCyclestate.timeLeft);
+    }
+    #endregion
 }

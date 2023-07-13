@@ -3,9 +3,10 @@
 
 public static class TimeConverter
 {
-    public static string Conv(string lifttime)
+    public static string UpdateTimeLift(ref int TimeLeft)
     {
-        return SecondstoTimesString(getliftSeconds(lifttime));
+        TimeLeft--;
+        return SecondstoTimesString(TimeLeft);
     }
 
     public static string SecondstoTimesString(int time)
