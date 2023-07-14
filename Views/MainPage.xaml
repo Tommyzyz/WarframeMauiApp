@@ -4,21 +4,70 @@
 			 xmlns:vm="clr-namespace:WarframeMauiApp.ViewModels"
 			 x:Class="WarframeMauiApp.Views.MainPage"
 			 x:DataType="vm:MainViewModel">
-    <Grid RowDefinitions="*,*,*"
-          ColumnDefinitions="*,*,*">
-        <Image Grid.Column="1" Grid.Row="0" BackgroundColor="Aquamarine"
-            Source="warframe.png"/>
-        <Label Grid.Row="1" Grid.Column="0" 
-               Text="{Binding EarthTimeLeftString, StringFormat='地球:{0}'}"/>
-        <Label Grid.Row="1" Grid.Column="1"
-               Text="{Binding CetusTimeLeftString, StringFormat='希图斯:{0}'}"/>
-        <Label Grid.Row="1" Grid.Column="2"
-               Text="{Binding CambionTimeLeftString, StringFormat='火卫二:{0}'}"/>
-        <Label Grid.Row="2" Grid.Column="0"
-               Text="{Binding VallisTimeLeftString, StringFormat='金星:{0}'}"/>
-        <Label Grid.Row="2" Grid.Column="1"
-               Text="{Binding ZarimanTimeLeftString, StringFormat='扎里曼{0}'}"/>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <x:String x:Key="FluentIcons" >SegoeFluentIcons</x:String>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <Grid ColumnDefinitions="*,*" RowDefinitions="*,*,*" BackgroundColor="Aqua">
+        <FlexLayout JustifyContent="SpaceAround" AlignItems="Center" Wrap="Wrap" BackgroundColor="Crimson">
+            <Grid RowDefinitions="2*,*">
+                <Image Aspect="Center">
+                    <Image.Source>
+                        <FontImageSource Color="Black" Glyph="&#xE7AC;" FontFamily="{StaticResource FluentIcons}"/>
+                    </Image.Source>
+                </Image>
+                <Label Text="{Binding EarthTimeLeftString, StringFormat='地球:{0}'}" 
+                       Grid.Row="1" HorizontalOptions="Center" 
+                       BackgroundColor="BlanchedAlmond"/>
+            </Grid>
+            <Grid RowDefinitions="2*,*">
+                <Image Aspect="Center">
+                    <Image.Source>
+                        <FontImageSource Color="Black" Glyph="&#xE7AC;" FontFamily="{StaticResource FluentIcons}"/>
+                    </Image.Source>
+                </Image>
+                <Label  Text="{Binding CetusTimeLeftString, StringFormat='希图斯:{0}'}" 
+                        Grid.Row="1" HorizontalOptions="Center" 
+                        BackgroundColor="BurlyWood"/>
+            </Grid>
+            <Grid RowDefinitions="2*,*">
+                <Image Aspect="Center">
+                    <Image.Source>
+                        <FontImageSource Color="Black" Glyph="&#xE7AC;" FontFamily="{StaticResource FluentIcons}"/>
+                    </Image.Source>
+                </Image>
+                <Label  Text="{Binding CambionTimeLeftString, StringFormat='火卫二:{0}'}" 
+                        Grid.Row="1" HorizontalOptions="Center" 
+                        BackgroundColor="BurlyWood"/>
+            </Grid>
+            <Grid RowDefinitions="2*,*">
+                <Image Aspect="Center">
+                    <Image.Source>
+                        <FontImageSource Color="Black" Glyph="&#xE7AC;" FontFamily="{StaticResource FluentIcons}"/>
+                    </Image.Source>
+                </Image>
+                <Label  Text="{Binding VallisTimeLeftString, StringFormat='金星:{0}'}"                         
+                        Grid.Row="1" HorizontalOptions="Center" 
+                        BackgroundColor="BurlyWood"/>
+            </Grid>
+            <Grid RowDefinitions="2*,*">
+                <Image Aspect="Center" Source="dotnet_bot.png"/>
 
+                <Label  Text="{Binding ZarimanTimeLeftString, StringFormat='扎里曼{0}'}"                  
+                        Grid.Row="1" HorizontalOptions="Center" 
+                        BackgroundColor="BurlyWood"/>
+            </Grid>
+
+
+
+
+
+
+        </FlexLayout>
+        <Label Grid.Column="1" Text="{Binding ArchonHuntData.boss}"/>
     </Grid>
+
+    
 
 </ContentPage>

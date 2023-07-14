@@ -55,7 +55,7 @@ public class WarfrmeClinetServices
 
         var responseData = await httpClient.GetAsync(uri);
 
-        responseData.EnsureSuccessStatusCode();
+        //responseData.EnsureSuccessStatusCode();
 
         var content = await responseData.Content.ReadAsStringAsync();
 

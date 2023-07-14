@@ -50,11 +50,15 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\Fonts\Segoe Fluent Icons.ttf" />
+	  <None Remove="Resources\Images\dotnet_bot.svg" />
 	  <None Remove="Resources\Images\warframe.png" />
+	  <None Remove="Resources\Images\WarframeItems\grineer-theme.png" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <EmbeddedResource Include="Resources\Images\warframe.png"/>
+	  <EmbeddedResource Include="Resources\Images\warframe.png" />
+	  <EmbeddedResource Include="Resources\Images\WarframeItems\grineer-theme.png" />
 	</ItemGroup>
 
 	<ItemGroup>
