@@ -72,6 +72,18 @@ public partial class MainViewModel : BaseViewModel
     {
         await Services.UpdateArchonHuntdata();
     }
+    */
+    /// <summary>
+    /// 属性和字段
+    /// </summary>
+    #region 
+    private int _earthTimeLeft;
+
+    private int _cetusTimeLeft;
+
+    private int _cambionTimeLeft;
+
+    private int _vallisTimeLeft;
 
     //世界状态
     #region
