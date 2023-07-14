@@ -11,7 +11,6 @@ public partial class MainViewModel : BaseViewModel
     public MainViewModel(WarfrmeClinetServices services)
     {
         Services = services;
-        //GetAllWorldStateAsync();
         var timer = new System.Timers.Timer();
         timer.Interval = 1000;
         timer.Elapsed += Timer_Elapsed;
