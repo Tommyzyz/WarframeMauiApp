@@ -11,10 +11,10 @@ public partial class MainViewModel : BaseViewModel
     public MainViewModel(WarfrmeClinetServices services)
     {
         Services = services;
-        var timer = new System.Timers.Timer();
-        timer.Interval = 1000;
-        timer.Elapsed += Timer_Elapsed;
-        timer.Start();
+        var timerSecond = new System.Timers.Timer(1000);
+        //timer.Interval = 1000;
+        timerSecond.Elapsed += Timer_Elapsed;
+        timerSecond.Start();
     }
 
     private async void Timer_Elapsed(object sender, ElapsedEventArgs e)
