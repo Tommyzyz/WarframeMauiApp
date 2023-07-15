@@ -3,7 +3,6 @@ global using WarframeMauiApp.Models;
 global using WarframeMauiApp.Services;
 global using CommunityToolkit.Mvvm.ComponentModel;
 global using CommunityToolkit.Mvvm.Input;
-global using WarframeMauiApp.Models;
 global using WarframeMauiApp.ViewModels;
 global using WarframeMauiApp.Views;
 global using System.Collections.ObjectModel;
