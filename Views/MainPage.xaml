@@ -7,34 +7,33 @@
 
     <Grid ColumnDefinitions="*,*" RowDefinitions="*,*,*" BackgroundColor="Aqua">
         <FlexLayout JustifyContent="SpaceAround" AlignItems="Center" Wrap="Wrap" BackgroundColor="Crimson">
-            <Grid RowDefinitions="2*,*">
-                <Image Aspect="Center">
-                    <Image.Source>
-                        <FontImageSource Glyph="{Binding EarthstateSource}" FontFamily="{StaticResource SeguiEMJ}" Size="75"/>
-                    </Image.Source>
-                </Image>
+            <Grid RowDefinitions="2*,*,*">
+                <Label FontFamily="{StaticResource SeguiEMJ}" FontSize="75" Text="&#x1F319;"/>
+                <Label Grid.Row="1" HorizontalOptions="Center" Text="{Binding EarthstateSource}" FontAttributes="Bold"/>
                 <Label Text="{Binding EarthTimeLeftString, StringFormat='地球:{0}'}" 
-                       Grid.Row="1" HorizontalOptions="Center" />
+                       Grid.Row="2" HorizontalOptions="Center" />
             </Grid>
-            <Grid RowDefinitions="2*,*">
+            <Grid RowDefinitions="2*,*,*">
                 <Image Aspect="Center" Source="{FontImage Size=75, Color=Aquamarine, FontFamily={StaticResource SeguiEMJ}, Glyph=&#x1F505;}"/>
+                <Label Grid.Row="1" HorizontalOptions="Center" Text="{Binding CetusstateString}" FontAttributes="Bold"/>
                 <Label  Text="{Binding CetusTimeLeftString, StringFormat='希图斯:{0}'}" 
-                        Grid.Row="1" HorizontalOptions="Center" />
+                        Grid.Row="2" HorizontalOptions="Center" />
             </Grid>
             <Grid RowDefinitions="2*,*,*">
                 <Image Aspect="AspectFit"  Source="{Binding CambionimageSource}"/>
-                <Label Grid.Row="1" HorizontalOptions="Center" Text="&#xF1DB;"/>
+                <Label Grid.Row="1" HorizontalOptions="Center" Text="{Binding CambionstateString}" FontAttributes="Bold"/>
                 <Label  Text="{Binding CambionTimeLeftString, StringFormat='火卫二:{0}'}" 
                         Grid.Row="2" HorizontalOptions="Center" />
             </Grid>
-            <Grid RowDefinitions="2*,*">
+            <Grid RowDefinitions="2*,*,*">
                 <Image Aspect="Center" Source="{FontImage Size=75, Color=Aquamarine, FontFamily={StaticResource FluentIcons}, Glyph=&#xE7AC;}"/>
+                <Label Grid.Row="1" HorizontalOptions="Center" Text="{Binding VallisstateString}" FontAttributes="Bold"/>
                 <Label  Text="{Binding VallisTimeLeftString, StringFormat='金星:{0}'}"                         
-                        Grid.Row="1" HorizontalOptions="Center" />
+                        Grid.Row="2" HorizontalOptions="Center" />
             </Grid>
             <Grid RowDefinitions="2*,*,*">
                 <Image Aspect="AspectFit"  Source="{Binding ZarimanimageSource}" HeightRequest="100" WidthRequest="100"/>
-                <Label Grid.Row="1" HorizontalOptions="Center" Text="afcadfc"/>
+                <Label Grid.Row="1" HorizontalOptions="Center" Text="{Binding ZarimanstateString}" FontAttributes="Bold"/>
                 <Label  Text="{Binding ZarimanTimeLeftString, StringFormat='扎里曼{0}'}"                  
                         Grid.Row="2" HorizontalOptions="Center" />
             </Grid>

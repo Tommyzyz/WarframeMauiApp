@@ -22,28 +22,48 @@ public partial class MainViewModel : BaseViewModel
         if (_earthTimeLeft <= 0)
         {
             await GetEarthStateAsync();
+            EarthstateSource = Services.earthCyclestate.state;
             if (Services.earthCyclestate.isDay) EarthstateSource = "&#x1F505;";
             else EarthstateSource = "&#x1F319;";
         }
         if (_cetusTimeLeft <= 0)
         {
             await GetCetusStateAsync();
+            CetusstateString = Services.cetusCyclestate.state;
+            
         }
         if (_cambionTimeLeft <= 0)
         {
             await GetCambionStateAsync();
-            if (Services.cambionCyclestate.state == "vome") CambionimageSource = "vome.png";
-            else CambionimageSource = "fass.png";
+            if (Services.cambionCyclestate.state == "vome")
+            {
+                CambionimageSource = "vome.png";
+                CambionstateString = "Vome";
+            }
+            else
+            {
+                CambionimageSource = "fass.png";
+                CambionstateString = "Fass";
+            }
         }
         if (_vallisTimeLeft <= 0)
         {
             await GetVallisStateAsync();
+            VallisstateString = Services.vallisCyclestate.state;
         }
         if (_zarimanTimeLeft <= 0)
         {
             await GetZarimanStateAsync();
-            if (Services.zarimanCyclestate.isCorpus) ZarimanimageSource = "corpustheme.png";
-            else ZarimanimageSource = "grineertheme.png";
+            if (Services.zarimanCyclestate.isCorpus)
+            {
+                ZarimanimageSource = "corpustheme.png";
+                ZarimanstateString = "Corpus";
+            }
+            else
+            {
+                ZarimanimageSource = "grineertheme.png";
+                ZarimanstateString = "Grineer";
+            }
         }
         EarthTimeLeftString = TimeConverter.UpdateTimeLift(ref _earthTimeLeft);
         CetusTimeLeftString = TimeConverter.UpdateTimeLift(ref _cetusTimeLeft);
@@ -91,10 +111,22 @@ public partial class MainViewModel : BaseViewModel
     private string _zarimanimageSource = "grineertheme.png";
 
     [ObservableProperty]
+    private string _zarimanstateString = "grineer";
+
+    [ObservableProperty]
     private string _cambionimageSource = "vome.png";
 
     [ObservableProperty]
+    private string _cambionstateString = "Vome";
+
+    [ObservableProperty]
     private string _earthstateSource;
+
+    [ObservableProperty]
+    private string _cetusstateString;
+
+    [ObservableProperty]
+    private string _vallisstateString;
 
     private int _earthTimeLeft = -1;
 
