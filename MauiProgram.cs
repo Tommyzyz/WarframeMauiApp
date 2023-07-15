@@ -15,6 +15,7 @@ public static class MauiProgram
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 fonts.AddFont("Segoe Fluent Icons.ttf", "SegoeFluentIcons");
+                fonts.AddFont("SEGUIEMJ.ttf", "SeguiEMJ");
 			});
 
 

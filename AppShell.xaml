@@ -9,7 +9,9 @@
     <ShellContent
         Title="Main"
         ContentTemplate="{DataTemplate views:MainPage}"
-        Icon="iconblank.png"
+        Icon="{FontImage Color=Black,
+                         Glyph=&#xE7C3;,
+                         FontFamily={StaticResource FluentIcons}}"
         Route="MainPage"
         Shell.NavBarIsVisible="true" />
     <ShellContent

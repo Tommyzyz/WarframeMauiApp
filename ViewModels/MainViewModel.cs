@@ -5,8 +5,8 @@ namespace WarframeMauiApp.ViewModels;
 
 public partial class MainViewModel : BaseViewModel
 {
-
-    private WarfrmeClinetServices Services { get; set; }
+    [ObservableProperty]
+    private WarfrmeClinetServices services;
 
     public MainViewModel(WarfrmeClinetServices services)
     {
@@ -22,6 +22,8 @@ public partial class MainViewModel : BaseViewModel
         if (_earthTimeLeft <= 0)
         {
             await GetEarthStateAsync();
+            if (Services.earthCyclestate.isDay) EarthstateSource = "&#x1F505;";
+            else EarthstateSource = "&#x1F319;";
         }
         if (_cetusTimeLeft <= 0)
         {
@@ -30,6 +32,8 @@ public partial class MainViewModel : BaseViewModel
         if (_cambionTimeLeft <= 0)
         {
             await GetCambionStateAsync();
+            if (Services.cambionCyclestate.state == "vome") CambionimageSource = "vome.png";
+            else CambionimageSource = "fass.png";
         }
         if (_vallisTimeLeft <= 0)
         {
@@ -38,12 +42,15 @@ public partial class MainViewModel : BaseViewModel
         if (_zarimanTimeLeft <= 0)
         {
             await GetZarimanStateAsync();
+            if (Services.zarimanCyclestate.isCorpus) ZarimanimageSource = "corpustheme.png";
+            else ZarimanimageSource = "grineertheme.png";
         }
         EarthTimeLeftString = TimeConverter.UpdateTimeLift(ref _earthTimeLeft);
         CetusTimeLeftString = TimeConverter.UpdateTimeLift(ref _cetusTimeLeft);
         CambionTimeLeftString = TimeConverter.UpdateTimeLift(ref _cambionTimeLeft);
         VallisTimeLeftString = TimeConverter.UpdateTimeLift(ref _vallisTimeLeft);
         ZarimanTimeLeftString = TimeConverter.UpdateTimeLift(ref _zarimanTimeLeft);
+        //ZarimanimageSource = "corpustheme.png";
 
     }
 
@@ -74,12 +81,21 @@ public partial class MainViewModel : BaseViewModel
         await Services.UpdateArchonHuntdata();
         ArchonHuntData = Services.archonHuntdata;
     }
-    
+
 
 
 
     //世界状态
     #region
+    [ObservableProperty]
+    private string _zarimanimageSource = "grineertheme.png";
+
+    [ObservableProperty]
+    private string _cambionimageSource = "vome.png";
+
+    [ObservableProperty]
+    private string _earthstateSource;
+
     private int _earthTimeLeft = -1;
 
     private int _cetusTimeLeft = -1;

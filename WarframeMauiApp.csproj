@@ -30,7 +30,7 @@
 
 	<ItemGroup>
 		<!-- App Icon -->
-		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
+		<MauiIcon Include="Resources\AppIcon\vazarin.png" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
 
 		<!-- Splash Screen -->
 		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
@@ -48,19 +48,26 @@
 
 	<ItemGroup>
 	  <None Remove="Resources\Fonts\Segoe Fluent Icons.ttf" />
+	  <None Remove="Resources\Fonts\SEGUIEMJ.TTF" />
 	  <None Remove="Resources\Images\dotnet_bot.svg" />
-	  <None Remove="Resources\Images\shutdown.svg" />
 	  <None Remove="Resources\Images\warframe.png" />
+	  <None Remove="Resources\Images\WarframeItems\corpustheme.png" />
+	  <None Remove="Resources\Images\WarframeItems\fass.png" />
 	  <None Remove="Resources\Images\WarframeItems\grineertheme.png" />
+	  <None Remove="Resources\Images\WarframeItems\vome.png" />
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiImage Include="Resources\Images\WarframeItems\corpustheme.png" />
+	  <MauiImage Include="Resources\Images\WarframeItems\fass.png" />
 	  <MauiImage Include="Resources\Images\WarframeItems\grineertheme.png" />
+	  <MauiImage Include="Resources\Images\WarframeItems\vome.png" />
 	</ItemGroup>
 
 	<ItemGroup>
 	  <PackageReference Include="CommunityToolkit.Maui" Version="5.2.0" />
 	  <PackageReference Include="CommunityToolkit.MVVM" Version="8.2.1" />
+	  <PackageReference Include="ValueConverters.MAUI" Version="3.0.26" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -89,6 +96,12 @@
 
 	<ItemGroup>
 	  <Folder Include="Converters\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="Dictionary.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	</ItemGroup>
 
 	<PropertyGroup Label="MauiAppAccelerator">
