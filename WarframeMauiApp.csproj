@@ -49,12 +49,16 @@
 	<ItemGroup>
 	  <None Remove="Resources\Fonts\Segoe Fluent Icons.ttf" />
 	  <None Remove="Resources\Fonts\SEGUIEMJ.TTF" />
+	  <None Remove="Resources\Images\cold.png" />
 	  <None Remove="Resources\Images\dotnet_bot.svg" />
+	  <None Remove="Resources\Images\ShootingStar.png" />
+	  <None Remove="Resources\Images\SunriseOverMountains.png" />
 	  <None Remove="Resources\Images\warframe.png" />
 	  <None Remove="Resources\Images\WarframeItems\corpustheme.png" />
 	  <None Remove="Resources\Images\WarframeItems\fass.png" />
 	  <None Remove="Resources\Images\WarframeItems\grineertheme.png" />
 	  <None Remove="Resources\Images\WarframeItems\vome.png" />
+	  <None Remove="Resources\Images\warm.png" />
 	</ItemGroup>
 
 	<ItemGroup>

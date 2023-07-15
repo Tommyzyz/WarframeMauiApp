@@ -23,14 +23,16 @@ public partial class MainViewModel : BaseViewModel
         {
             await GetEarthStateAsync();
             EarthstateSource = Services.earthCyclestate.state;
-            if (Services.earthCyclestate.isDay) EarthstateSource = "&#x1F505;";
-            else EarthstateSource = "&#x1F319;";
+            if (Services.earthCyclestate.isDay) EarthimageSource = "sunriseovermountains.png";
+            else EarthimageSource = "shootingstar.png";
         }
         if (_cetusTimeLeft <= 0)
         {
             await GetCetusStateAsync();
             CetusstateString = Services.cetusCyclestate.state;
-            
+            if (Services.cetusCyclestate.isDay) CetusimageSource = "sunriseovermountains.png";
+            else CetusimageSource = "shootingstar.png";
+
         }
         if (_cambionTimeLeft <= 0)
         {
@@ -50,6 +52,8 @@ public partial class MainViewModel : BaseViewModel
         {
             await GetVallisStateAsync();
             VallisstateString = Services.vallisCyclestate.state;
+            if (Services.vallisCyclestate.isWarm) VallisimageSource = "warm.png";
+            else VallisimageSource = "cold.png";
         }
         if (_zarimanTimeLeft <= 0)
         {
@@ -123,10 +127,19 @@ public partial class MainViewModel : BaseViewModel
     private string _earthstateSource;
 
     [ObservableProperty]
+    private string _earthimageSource = "sunriseovermountains.png";
+
+    [ObservableProperty]
     private string _cetusstateString;
 
     [ObservableProperty]
+    private string _cetusimageSource = "sunriseovermountains.png";
+
+    [ObservableProperty]
     private string _vallisstateString;
+
+    [ObservableProperty]
+    private string _vallisimageSource = "warm.png";
 
     private int _earthTimeLeft = -1;
 
