@@ -1,4 +1,6 @@
-﻿namespace WarframeMauiApp.Services;
+﻿
+
+namespace WarframeMauiApp.Services;
 
 
 public static class TimeConverter
@@ -16,6 +18,13 @@ public static class TimeConverter
         var s = (time % (60 * 60)) % 60;
         return h.ToString() + ":" + m.ToString() + ":" + s.ToString();
 
+    }
+
+    public static int getLiftSeconds(DateTime expiry)
+    {
+        //DateTime expiry = DateTime.ParseExact("2023-07-16T04:00:00.891Z", "yyyy-MM-ddTHH:mm:ss.fffZ", null);
+        TimeSpan remainingTime = expiry.Subtract(DateTime.UtcNow);
+        return ((int)remainingTime.TotalSeconds);
     }
 
     public static int getliftSeconds(string lifttime)

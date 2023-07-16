@@ -169,31 +169,31 @@ public partial class MainViewModel : BaseViewModel
     public async Task GetZarimanStateAsync()
     {
         await Services.UpdateZarimanState();
-        _zarimanTimeLeft = TimeConverter.getliftSeconds(Services.zarimanCyclestate.timeLeft);
+        _zarimanTimeLeft = TimeConverter.getLiftSeconds(Services.zarimanCyclestate.expiry);
     }
 
     public async Task GetVallisStateAsync()
     {
         await Services.UpdateVallisState();
-        _vallisTimeLeft = TimeConverter.getliftSeconds(Services.vallisCyclestate.timeLeft);
+        _vallisTimeLeft = TimeConverter.getLiftSeconds(Services.vallisCyclestate.expiry);
     }
 
     public async Task GetEarthStateAsync()
     {
         await Services.UpdateEarthState();
-        _earthTimeLeft = TimeConverter.getliftSeconds(Services.earthCyclestate.timeLeft);
+        _earthTimeLeft = TimeConverter.getLiftSeconds(Services.earthCyclestate.expiry);
     }
 
     public async Task GetCetusStateAsync()
     {
         await Services.UpdateCetusState();
-        _cetusTimeLeft = TimeConverter.getliftSeconds(Services.cetusCyclestate.timeLeft);
+        _cetusTimeLeft = TimeConverter.getLiftSeconds(Services.cetusCyclestate.expiry);
     }
 
     public async Task GetCambionStateAsync()
     {
         await Services.UpdateCambionState();
-        _cambionTimeLeft = TimeConverter.getliftSeconds(Services.cambionCyclestate.timeLeft);
+        _cambionTimeLeft = TimeConverter.getLiftSeconds(Services.cambionCyclestate.expiry);
     }
     #endregion
 }
