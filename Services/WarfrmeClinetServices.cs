@@ -6,10 +6,7 @@ namespace WarframeMauiApp.Services;
 public class WarfrmeClinetServices
 
 {
-    /*public WarfrmeClinetServices(HttpClient httpClient)
-    {
-        this.httpClient = httpClient;
-    }*/
+
     public readonly HttpClient httpClient = new();
 
     public earthCycle earthCyclestate;
@@ -17,40 +14,51 @@ public class WarfrmeClinetServices
     public cambionCycle cambionCyclestate;
     public vallisCycle vallisCyclestate;
     public zarimanCycle zarimanCyclestate;
+
     public archonHunt archonHuntdata;
+    public sortie sortiedata;
+
+
+
+
+
+    public async Task UpdateSortiedata()
+    {
+        sortiedata = await GetWarframeDateAsync<sortie>(WarframeAPIUri.sortieUri);
+    }
 
     public async Task UpdateArchonHuntdata()
     {
-        archonHuntdata = await GetWorframeDateAsync<archonHunt>(WarframeAPIUri.archonHuntUri);
+        archonHuntdata = await GetWarframeDateAsync<archonHunt>(WarframeAPIUri.archonHuntUri);
     }
 
     public async Task UpdateZarimanState()
     {
-        zarimanCyclestate = await GetWorframeDateAsync<zarimanCycle>(WarframeAPIUri.zarimanCycleUri);
+        zarimanCyclestate = await GetWarframeDateAsync<zarimanCycle>(WarframeAPIUri.zarimanCycleUri);
     }
 
     public async Task UpdateVallisState()
     {
-        vallisCyclestate = await GetWorframeDateAsync<vallisCycle>(WarframeAPIUri.vallisCycleUri);
+        vallisCyclestate = await GetWarframeDateAsync<vallisCycle>(WarframeAPIUri.vallisCycleUri);
     }
 
     public async Task UpdateEarthState()
     {
-        earthCyclestate = await GetWorframeDateAsync<earthCycle>(WarframeAPIUri.earthUri);
+        earthCyclestate = await GetWarframeDateAsync<earthCycle>(WarframeAPIUri.earthUri);
     }
 
     public async Task UpdateCetusState()
     {
-        cetusCyclestate = await GetWorframeDateAsync<cetusCycle>(WarframeAPIUri.cetusUri);
+        cetusCyclestate = await GetWarframeDateAsync<cetusCycle>(WarframeAPIUri.cetusUri);
     }
 
     public async Task UpdateCambionState()
     {
-        cambionCyclestate = await GetWorframeDateAsync<cambionCycle>(WarframeAPIUri.cambionUri);
+        cambionCyclestate = await GetWarframeDateAsync<cambionCycle>(WarframeAPIUri.cambionUri);
     }
 
 
-    private async Task<T> GetWorframeDateAsync<T>(Uri uri)
+    private async Task<T> GetWarframeDateAsync<T>(Uri uri)
     {
 
         var responseData = await httpClient.GetAsync(uri);

@@ -5,7 +5,7 @@
 			 x:Class="WarframeMauiApp.Views.MainPage"
 			 x:DataType="vm:MainViewModel">
 
-    <Grid ColumnDefinitions="*,*" RowDefinitions="*,*" BackgroundColor="Aqua">
+    <Grid ColumnDefinitions="5*,*,*" RowDefinitions="*,*">
         <FlexLayout Padding="4" JustifyContent="SpaceAround" AlignItems="Center" Wrap="Wrap" BackgroundColor="Crimson">
             <Grid RowDefinitions="2*,*,*">
                 <Image Aspect="AspectFit"  Source="{Binding EarthimageSource}"/>
@@ -37,14 +37,34 @@
                 <Label  Text="{Binding ZarimanTimeLeftString, StringFormat='扎里曼{0}'}"                  
                         Grid.Row="2" HorizontalOptions="Center" />
             </Grid>
-
-
-
-
-
-
         </FlexLayout>
-        <Label Grid.Column="1" Text="{Binding ArchonHuntData.boss}"/>
+        <Grid Grid.Row="0" Grid.Column="1" RowDefinitions="2*,*,*,*,*,*,*" ColumnDefinitions="*,*">
+            <Label Grid.Row="0" Grid.Column="0" Text="Boss:"/>
+            <Label Grid.Row="0" Grid.Column="1" Text="{Binding SortieData.boss}"/>
+            <Label Grid.Row="1" Grid.Column="0" Text="{Binding SortieData.variants[0].missionType}"/>
+            <Label Grid.Row="1" Grid.Column="1" Text="{Binding SortieData.variants[0].node}"/>
+            <Label Grid.Row="2" Grid.ColumnSpan="2" Text="{Binding SortieData.variants[0].modifier}"/>
+
+            <Label Grid.Row="3" Grid.Column="0"  VerticalOptions="Center" Text="{Binding SortieData.variants[1].missionType}"/>
+            <Label Grid.Row="3" Grid.Column="1"  VerticalOptions="Center" Text="{Binding SortieData.variants[1].node}"/>
+            <Label Grid.Row="4" Grid.ColumnSpan="2"  VerticalOptions="Center" Text="{Binding SortieData.variants[1].modifier}"/>
+            
+            <Label Grid.Row="5" Grid.Column="0"  VerticalOptions="Center" Text="{Binding SortieData.variants[2].missionType}"/>
+            <Label Grid.Row="5" Grid.Column="1"  VerticalOptions="Center" Text="{Binding SortieData.variants[2].node}"/>
+            <Label Grid.Row="6" Grid.ColumnSpan="2"  VerticalOptions="Center" Text="{Binding SortieData.variants[2].modifier}"/>
+        </Grid>
+
+        <Grid Grid.Row="0" Grid.Column="2" RowDefinitions="2*,*,*,*" ColumnDefinitions="*,*" Padding="4">
+            <Label Grid.Row="0" Grid.Column="0" Text="Boss:"/>
+            <Label Grid.Row="0" Grid.Column="1" Text="{Binding ArchonHuntData.boss}"/>
+            <Label Grid.Row="1" Grid.Column="0" Text="{Binding ArchonHuntData.missions[0].type}"/>
+            <Label Grid.Row="1" Grid.Column="1" Text="{Binding ArchonHuntData.missions[0].node}"/>
+            <Label Grid.Row="2" Grid.Column="0" Text="{Binding ArchonHuntData.missions[1].type}"/>
+            <Label Grid.Row="2" Grid.Column="1" Text="{Binding ArchonHuntData.missions[1].node}"/>
+            <Label Grid.Row="3" Grid.Column="0" Text="{Binding ArchonHuntData.missions[2].type}"/>
+            <Label Grid.Row="3" Grid.Column="1" Text="{Binding ArchonHuntData.missions[2].node}"/>
+        </Grid>
+
     </Grid>
 
     

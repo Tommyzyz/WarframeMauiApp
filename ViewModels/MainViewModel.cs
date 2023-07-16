@@ -11,7 +11,7 @@ public partial class MainViewModel : BaseViewModel
     public MainViewModel(WarfrmeClinetServices services)
     {
         Services = services;
-        GetArchonHuntDataAsync();
+        GetAllWorldStateAsync();
         var timerSecond = new System.Timers.Timer(1000);
         timerSecond.Elapsed += Timer_Elapsed;
         timerSecond.Start();
@@ -74,7 +74,7 @@ public partial class MainViewModel : BaseViewModel
         CambionTimeLeftString = TimeConverter.UpdateTimeLift(ref _cambionTimeLeft);
         VallisTimeLeftString = TimeConverter.UpdateTimeLift(ref _vallisTimeLeft);
         ZarimanTimeLeftString = TimeConverter.UpdateTimeLift(ref _zarimanTimeLeft);
-        //ZarimanimageSource = "corpustheme.png";
+
 
     }
 
@@ -82,32 +82,34 @@ public partial class MainViewModel : BaseViewModel
     #region 
 
     [ObservableProperty]
-    private archonHunt archonHuntData;  
+    private archonHunt archonHuntData;
 
+    [ObservableProperty]
+    private sortie sortieData;
     #endregion
 
 
-    /*
-    public async Task GetAllWorldStateAsync()
+    
+    public async void GetAllWorldStateAsync()
     {
-        await Services.UpdateEarthState();
-        await Services.UpdateCetusState();
-        await Services.UpdateCambionState();
+        await GetArchonHuntDataAsync();
+        await GetSortieDataAsync();
 
-        _earthTimeLeft = TimeConverter.getliftSeconds(Services.earthCyclestate.timeLeft);
-        _cetusTimeLeft = TimeConverter.getliftSeconds(Services.cetusCyclestate.timeLeft);
-        _cambionTimeLeft = TimeConverter.getliftSeconds(Services.cambionCyclestate.timeLeft);
-
-    }*/
-
+    }
+    //执行官
     public async Task GetArchonHuntDataAsync()
     {
         await Services.UpdateArchonHuntdata();
         ArchonHuntData = Services.archonHuntdata;
     }
+    //突击
+    public async Task GetSortieDataAsync()
+    {
+        await Services.UpdateSortiedata();
+        SortieData = Services.sortiedata;
+    }
 
-
-
+    //sortie
 
     //世界状态
     #region
