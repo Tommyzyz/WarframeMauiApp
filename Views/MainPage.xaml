@@ -4,65 +4,92 @@
 			 xmlns:vm="clr-namespace:WarframeMauiApp.ViewModels"
 			 x:Class="WarframeMauiApp.Views.MainPage"
 			 x:DataType="vm:MainViewModel">
+    <ContentPage.Resources>
+        <ControlTemplate x:Key="CardViewControlTemplate">
+            <Frame BackgroundColor="Aquamarine"
+                   BorderColor="Beige"
+                   CornerRadius="5"
+                   HasShadow="True"
+                   Padding="8"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center">
+
+                <Grid RowDefinitions="2*,*,*">
+                        <Image Aspect="AspectFit"  Source="{Binding ZarimanimageSource}"/>
+                        <Label Grid.Row="1" HorizontalOptions="Center" Text="{Binding ZarimanstateString}" FontAttributes="Bold"/>
+                        <Label  Text="{Binding ZarimanTimeLeftString, StringFormat='扎里曼{0}'}"                  
+                        Grid.Row="2" HorizontalOptions="Center" />
+                </Grid>
+            </Frame>
+        </ControlTemplate>
+    </ContentPage.Resources>
 
     <Grid ColumnDefinitions="5*,*,*" RowDefinitions="*,*">
-        <FlexLayout Padding="4" JustifyContent="SpaceAround" AlignItems="Center" Wrap="Wrap" BackgroundColor="Crimson">
+        <FlexLayout JustifyContent="SpaceAround" AlignItems="Center" Wrap="Wrap" BackgroundColor="Crimson">
             <Grid RowDefinitions="2*,*,*">
-                <Image Aspect="AspectFit"  Source="{Binding EarthimageSource}"/>
+                <Image Aspect="AspectFit" HeightRequest="100"  Source="{Binding EarthimageSource}"/>
                 <Label Grid.Row="1" HorizontalOptions="Center" Text="{Binding EarthstateSource}" FontAttributes="Bold"/>
                 <Label Text="{Binding EarthTimeLeftString, StringFormat='地球:{0}'}" 
                        Grid.Row="2" HorizontalOptions="Center" />
             </Grid>
             <Grid RowDefinitions="2*,*,*">
-                <Image Aspect="AspectFit"  Source="{Binding CetusimageSource}"/>
+                <Image Aspect="AspectFit" HeightRequest="100"  Source="{Binding CetusimageSource}"/>
                 <Label Grid.Row="1" HorizontalOptions="Center" Text="{Binding CetusstateString}" FontAttributes="Bold"/>
                 <Label  Text="{Binding CetusTimeLeftString, StringFormat='希图斯:{0}'}" 
                         Grid.Row="2" HorizontalOptions="Center" />
             </Grid>
             <Grid RowDefinitions="2*,*,*">
-                <Image Aspect="AspectFit"  Source="{Binding CambionimageSource}"/>
+                <Frame HeightRequest="100" WidthRequest="100" Margin="8" Padding="2" HorizontalOptions="Center" BackgroundColor="Grey" BorderColor="Aquamarine">
+                    <Image Aspect="AspectFit" Source="{Binding CambionimageSource}"/>
+                </Frame>
+                <Image Aspect="AspectFit" HeightRequest="100" Source="{Binding CambionimageSource}"/>
                 <Label Grid.Row="1" HorizontalOptions="Center" Text="{Binding CambionstateString}" FontAttributes="Bold"/>
                 <Label  Text="{Binding CambionTimeLeftString, StringFormat='火卫二:{0}'}" 
                         Grid.Row="2" HorizontalOptions="Center" />
             </Grid>
             <Grid RowDefinitions="2*,*,*">
-                <Image Aspect="AspectFit" Source="{Binding VallisimageSource}"/>
+                <Frame HeightRequest="100" WidthRequest="100" Margin="8" Padding="2" HorizontalOptions="Center" BackgroundColor="DarkCyan" BorderColor="Aqua">
+                    <Image Aspect="AspectFit" Source="{Binding VallisimageSource}"/>
+                </Frame>
                 <Label Grid.Row="1" HorizontalOptions="Center" Text="{Binding VallisstateString}" FontAttributes="Bold"/>
                 <Label  Text="{Binding VallisTimeLeftString, StringFormat='金星:{0}'}"                         
                         Grid.Row="2" HorizontalOptions="Center" />
             </Grid>
             <Grid RowDefinitions="2*,*,*">
-                <Image Aspect="AspectFit"  Source="{Binding ZarimanimageSource}"/>
+                <Frame HeightRequest="100" WidthRequest="100" Margin="8" Padding="2" HorizontalOptions="Center" BackgroundColor="BurlyWood">
+                    <Image Aspect="AspectFit" Source="{Binding ZarimanimageSource}" />
+                </Frame>
+
                 <Label Grid.Row="1" HorizontalOptions="Center" Text="{Binding ZarimanstateString}" FontAttributes="Bold"/>
                 <Label  Text="{Binding ZarimanTimeLeftString, StringFormat='扎里曼{0}'}"                  
                         Grid.Row="2" HorizontalOptions="Center" />
             </Grid>
         </FlexLayout>
-        <Grid Grid.Row="0" Grid.Column="1" RowDefinitions="2*,*,*,*,*,*,*" ColumnDefinitions="*,*">
-            <Label Grid.Row="0" Grid.Column="0" Text="Boss:"/>
-            <Label Grid.Row="0" Grid.Column="1" Text="{Binding SortieData.boss}"/>
-            <Label Grid.Row="1" Grid.Column="0" Text="{Binding SortieData.variants[0].missionType}"/>
-            <Label Grid.Row="1" Grid.Column="1" Text="{Binding SortieData.variants[0].node}"/>
-            <Label Grid.Row="2" Grid.ColumnSpan="2" Text="{Binding SortieData.variants[0].modifier}"/>
+        <Grid Grid.Row="0" Grid.Column="1" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto" ColumnDefinitions="*,2*"  Padding="8">
+            <Label Grid.Row="0" Grid.Column="0" Margin="0,2,0,2" VerticalOptions="Center" Text="Boss:"/>
+            <Label Grid.Row="0" Grid.Column="1" Margin="0,2,0,2" VerticalOptions="Center" Text="{Binding SortieData.boss}" BackgroundColor="Aquamarine"/>
+            <Label Grid.Row="1" Grid.Column="0" Margin="0,2,0,2" VerticalOptions="Center" Text="{Binding SortieData.variants[0].missionType}" BackgroundColor="Beige"/>
+            <Label Grid.Row="1" Grid.Column="1" Margin="0,2,0,2" VerticalOptions="Center" Text="{Binding SortieData.variants[0].node}"/>
+            <Label Grid.Row="2" Grid.ColumnSpan="2" Margin="0,2,0,2" VerticalOptions="Center" Text="{Binding SortieData.variants[0].modifier}"/>
 
-            <Label Grid.Row="3" Grid.Column="0"  VerticalOptions="Center" Text="{Binding SortieData.variants[1].missionType}"/>
-            <Label Grid.Row="3" Grid.Column="1"  VerticalOptions="Center" Text="{Binding SortieData.variants[1].node}"/>
-            <Label Grid.Row="4" Grid.ColumnSpan="2"  VerticalOptions="Center" Text="{Binding SortieData.variants[1].modifier}"/>
-            
-            <Label Grid.Row="5" Grid.Column="0"  VerticalOptions="Center" Text="{Binding SortieData.variants[2].missionType}"/>
-            <Label Grid.Row="5" Grid.Column="1"  VerticalOptions="Center" Text="{Binding SortieData.variants[2].node}"/>
-            <Label Grid.Row="6" Grid.ColumnSpan="2"  VerticalOptions="Center" Text="{Binding SortieData.variants[2].modifier}"/>
+            <Label Grid.Row="3" Grid.Column="0" Margin="0,2,0,2"  VerticalOptions="Center" Text="{Binding SortieData.variants[1].missionType}"/>
+            <Label Grid.Row="3" Grid.Column="1" Margin="0,2,0,2" VerticalOptions="Center" Text="{Binding SortieData.variants[1].node}"/>
+            <Label Grid.Row="4" Grid.ColumnSpan="2" Margin="0,2,0,2" VerticalOptions="Center" Text="{Binding SortieData.variants[1].modifier}"/>
+
+            <Label Grid.Row="5" Grid.Column="0" Margin="0,2,0,2" VerticalOptions="Center" Text="{Binding SortieData.variants[2].missionType}"/>
+            <Label Grid.Row="5" Grid.Column="1" Margin="0,2,0,2" VerticalOptions="Center" Text="{Binding SortieData.variants[2].node}"/>
+            <Label Grid.Row="6" Grid.ColumnSpan="2" Margin="0,2,0,2" VerticalOptions="Center" Text="{Binding SortieData.variants[2].modifier}"/>
         </Grid>
 
-        <Grid Grid.Row="0" Grid.Column="2" RowDefinitions="2*,*,*,*" ColumnDefinitions="*,*" Padding="4">
-            <Label Grid.Row="0" Grid.Column="0" Text="Boss:"/>
-            <Label Grid.Row="0" Grid.Column="1" Text="{Binding ArchonHuntData.boss}"/>
-            <Label Grid.Row="1" Grid.Column="0" Text="{Binding ArchonHuntData.missions[0].type}"/>
-            <Label Grid.Row="1" Grid.Column="1" Text="{Binding ArchonHuntData.missions[0].node}"/>
-            <Label Grid.Row="2" Grid.Column="0" Text="{Binding ArchonHuntData.missions[1].type}"/>
-            <Label Grid.Row="2" Grid.Column="1" Text="{Binding ArchonHuntData.missions[1].node}"/>
-            <Label Grid.Row="3" Grid.Column="0" Text="{Binding ArchonHuntData.missions[2].type}"/>
-            <Label Grid.Row="3" Grid.Column="1" Text="{Binding ArchonHuntData.missions[2].node}"/>
+        <Grid Grid.Row="0" Grid.Column="2" RowDefinitions="Auto,Auto,Auto,Auto" ColumnDefinitions="*,2*" Padding="4">
+            <Label Grid.Row="0" Grid.Column="0" VerticalOptions="Center" Text="Boss:"/>
+            <Label Grid.Row="0" Grid.Column="1" VerticalOptions="Center" Text="{Binding ArchonHuntData.boss}"/>
+            <Label Grid.Row="1" Grid.Column="0" VerticalOptions="Center" Text="{Binding ArchonHuntData.missions[0].type}"/>
+            <Label Grid.Row="1" Grid.Column="1" VerticalOptions="Center" Text="{Binding ArchonHuntData.missions[0].node}"/>
+            <Label Grid.Row="2" Grid.Column="0" VerticalOptions="Center" Text="{Binding ArchonHuntData.missions[1].type}"/>
+            <Label Grid.Row="2" Grid.Column="1" VerticalOptions="Center" Text="{Binding ArchonHuntData.missions[1].node}"/>
+            <Label Grid.Row="3" Grid.Column="0" VerticalOptions="Center" Text="{Binding ArchonHuntData.missions[2].type}"/>
+            <Label Grid.Row="3" Grid.Column="1" VerticalOptions="Center" Text="{Binding ArchonHuntData.missions[2].node}"/>
         </Grid>
 
     </Grid>
