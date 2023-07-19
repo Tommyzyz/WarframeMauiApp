@@ -20,13 +20,13 @@ public class WarfrmeClinetServices
     public archonHunt archonHuntdata;
     public sortie sortiedata;
 
-    public List<news> newsdata;
+    public ObservableCollection<news> newsdata;
 
 
 
     public async Task UpdateNewsdata()
     {
-        newsdata = await GetWarframeDateAsync<List<news>>(WarframeAPIUri.newsUri);
+        newsdata = await GetWarframeDateAsync<ObservableCollection<news>>(WarframeAPIUri.newsUri);
     }
 
     public async Task UpdateSortiedata()
@@ -76,14 +76,14 @@ public class WarfrmeClinetServices
 
     }
 
-    private async Task<List<T>> GetWarframeDateListAsync<T>(Uri uri)
+    private async Task<ObservableCollection<T>> GetWarframeDateListAsync<T>(Uri uri)
     {
 
         var responseData = await httpClient.GetAsync(uri);
 
         var content = await responseData.Content.ReadAsStringAsync();
 
-        return JsonSerializer.Deserialize<List<T>>(content);
+        return JsonSerializer.Deserialize<ObservableCollection<T>>(content);
 
     }
 

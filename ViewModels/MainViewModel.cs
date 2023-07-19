@@ -22,52 +22,28 @@ public partial class MainViewModel : BaseViewModel
         if (_earthTimeLeft <= 0)
         {
             await GetEarthStateAsync();
-            EarthstateSource = Services.earthCyclestate.state;
-            if (Services.earthCyclestate.isDay) EarthimageSource = "sunriseovermountains.png";
-            else EarthimageSource = "shootingstar.png";
+            EarthcycleStateSource = Services.earthCyclestate;
         }
         if (_cetusTimeLeft <= 0)
         {
             await GetCetusStateAsync();
-            CetusstateString = Services.cetusCyclestate.state;
-            if (Services.cetusCyclestate.isDay) CetusimageSource = "sunriseovermountains.png";
-            else CetusimageSource = "shootingstar.png";
+            CetuscycleStateSource = Services.cetusCyclestate;
 
         }
         if (_cambionTimeLeft <= 0)
         {
             await GetCambionStateAsync();
-            if (Services.cambionCyclestate.state == "vome")
-            {
-                CambionimageSource = "vome.png";
-                CambionstateString = "Vome";
-            }
-            else
-            {
-                CambionimageSource = "fass.png";
-                CambionstateString = "Fass";
-            }
+            CambioncleStateSource = Services.cambionCyclestate;
         }
         if (_vallisTimeLeft <= 0)
         {
             await GetVallisStateAsync();
-            VallisstateString = Services.vallisCyclestate.state;
-            if (Services.vallisCyclestate.isWarm) VallisimageSource = "warm.png";
-            else VallisimageSource = "cold.png";
+            ValliscleStateSource = Services.vallisCyclestate;
         }
         if (_zarimanTimeLeft <= 0)
         {
             await GetZarimanStateAsync();
-            if (Services.zarimanCyclestate.isCorpus)
-            {
-                ZarimanimageSource = "corpustheme.png";
-                ZarimanstateString = "Corpus";
-            }
-            else
-            {
-                ZarimanimageSource = "grineertheme.png";
-                ZarimanstateString = "Grineer";
-            }
+            ZarimancycleStateSource = Services.zarimanCyclestate;
         }
         EarthTimeLeftString = TimeConverter.UpdateTimeLift(ref _earthTimeLeft);
         CetusTimeLeftString = TimeConverter.UpdateTimeLift(ref _cetusTimeLeft);
@@ -89,7 +65,7 @@ public partial class MainViewModel : BaseViewModel
 
 
     [ObservableProperty]
-    private List<news> newsData;
+    private ObservableCollection<news> newsData;
     #endregion
 
 
@@ -125,34 +101,19 @@ public partial class MainViewModel : BaseViewModel
     //世界状态
     #region
     [ObservableProperty]
-    private string _zarimanimageSource = "grineertheme.png";
+    private zarimanCycle _zarimancycleStateSource;
 
     [ObservableProperty]
-    private string _zarimanstateString = "grineer";
+    private cambionCycle _cambioncleStateSource;
 
     [ObservableProperty]
-    private string _cambionimageSource = "vome.png";
+    private earthCycle _earthcycleStateSource;
 
     [ObservableProperty]
-    private string _cambionstateString = "Vome";
+    private cetusCycle _cetuscycleStateSource;
 
     [ObservableProperty]
-    private string _earthstateSource;
-
-    [ObservableProperty]
-    private string _earthimageSource = "sunriseovermountains.png";
-
-    [ObservableProperty]
-    private string _cetusstateString;
-
-    [ObservableProperty]
-    private string _cetusimageSource = "sunriseovermountains.png";
-
-    [ObservableProperty]
-    private string _vallisstateString;
-
-    [ObservableProperty]
-    private string _vallisimageSource = "warm.png";
+    private vallisCycle _valliscleStateSource;
 
     private int _earthTimeLeft = -1;
 

@@ -1,104 +1,295 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-			 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-			 xmlns:vm="clr-namespace:WarframeMauiApp.ViewModels"
-             xmlns:valueConverters="clr-namespace:ValueConverters;assembly=ValueConverters"
-			 x:Class="WarframeMauiApp.Views.MainPage"
-			 x:DataType="vm:MainViewModel">
+<ContentPage
+    x:Class="WarframeMauiApp.Views.MainPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:model="clr-namespace:WarframeMauiApp.Models"
+    xmlns:valueConverters="clr-namespace:ValueConverters;assembly=ValueConverters"
+    xmlns:vm="clr-namespace:WarframeMauiApp.ViewModels"
+    x:DataType="vm:MainViewModel">
 
     <ContentPage.Resources>
         <ControlTemplate x:Key="CardViewControlTemplate">
-            <Frame BackgroundColor="Aquamarine"
-                   BorderColor="Beige"
-                   CornerRadius="5"
-                   HasShadow="True"
-                   Padding="8"
-                   HorizontalOptions="Center"
-                   VerticalOptions="Center">
-
-
-            </Frame>
+            <Frame
+                Padding="8"
+                BackgroundColor="Aquamarine"
+                BorderColor="Beige"
+                CornerRadius="5"
+                HasShadow="True"
+                HorizontalOptions="Center"
+                VerticalOptions="Center" />
         </ControlTemplate>
-        <valueConverters:BoolToImageSourceConverter x:Key="booltoimagedayandnignt" TrueValue="sunriseovermountains.png" FalseValue="shootingstar.png"/>
+        <valueConverters:BoolToImageSourceConverter
+            x:Key="booltoimagedayandnignt"
+            FalseValue="shootingstar.png"
+            TrueValue="sunriseovermountains.png" />
+        <valueConverters:BoolToImageSourceConverter
+            x:Key="booltoimageCorpusandGrineer"
+            FalseValue="grineertheme.png"
+            TrueValue="corpustheme.png" />
+        <valueConverters:BoolToImageSourceConverter
+            x:Key="booltoimageWarmandCold"
+            FalseValue="cold.png"
+            TrueValue="warm.png" />
+        <valueConverters:ValueConverterGroup x:Key="convvomeandfass">
+            <valueConverters:StringToBoolConverter FalseValue="fass" TrueValue="vome" />
+            <valueConverters:BoolToImageSourceConverter FalseValue="fass.png" TrueValue="vome.png" />
+        </valueConverters:ValueConverterGroup>
     </ContentPage.Resources>
 
     <Grid ColumnDefinitions="*,Auto,Auto" RowDefinitions="Auto,Auto">
-        <FlexLayout JustifyContent="SpaceAround" AlignItems="Center" Wrap="Wrap" BackgroundColor="Crimson">
+        <FlexLayout
+            AlignItems="Center"
+            BackgroundColor="Crimson"
+            JustifyContent="SpaceAround"
+            Wrap="Wrap">
             <Grid RowDefinitions="2*,*,*">
-                <Image Aspect="AspectFit" HeightRequest="100"  Source="{Binding EarthimageSource}"/>
-                <Label Grid.Row="1" HorizontalOptions="Center" Text="{Binding EarthstateSource}" FontAttributes="Bold"/>
-                <Label Text="{Binding EarthTimeLeftString, StringFormat='地球:{0}'}" 
-                       Grid.Row="2" HorizontalOptions="Center" />
+                <Image
+                    Aspect="AspectFit"
+                    HeightRequest="100"
+                    Source="{Binding EarthcycleStateSource.isDay, Converter={StaticResource booltoimagedayandnignt}}" />
+                <Label
+                    Grid.Row="1"
+                    FontAttributes="Bold"
+                    HorizontalOptions="Center"
+                    Text="{Binding EarthcycleStateSource.state}" />
+                <Label
+                    Grid.Row="2"
+                    HorizontalOptions="Center"
+                    Text="{Binding EarthTimeLeftString, StringFormat='地球:{0}'}" />
             </Grid>
             <Grid RowDefinitions="2*,*,*">
-                <Image Aspect="AspectFit" HeightRequest="100"  Source="{Binding CetusimageSource}"/>
-                <Label Grid.Row="1" HorizontalOptions="Center" Text="{Binding CetusstateString}" FontAttributes="Bold"/>
-                <Label  Text="{Binding CetusTimeLeftString, StringFormat='希图斯:{0}'}" 
-                        Grid.Row="2" HorizontalOptions="Center" />
+                <Image
+                    Aspect="AspectFit"
+                    HeightRequest="100"
+                    Source="{Binding CetuscycleStateSource.isDay, Converter={StaticResource booltoimagedayandnignt}}" />
+                <Label
+                    Grid.Row="1"
+                    FontAttributes="Bold"
+                    HorizontalOptions="Center"
+                    Text="{Binding CetuscycleStateSource.state}" />
+                <Label
+                    Grid.Row="2"
+                    HorizontalOptions="Center"
+                    Text="{Binding CetusTimeLeftString, StringFormat='希图斯:{0}'}" />
             </Grid>
             <Grid RowDefinitions="2*,*,*">
-                <Frame HeightRequest="100" WidthRequest="100" Margin="8" Padding="2" HorizontalOptions="Center" BackgroundColor="Grey" BorderColor="Aquamarine">
-                    <Image Aspect="AspectFit" Source="{Binding CambionimageSource}"/>
+                <Frame
+                    Margin="8"
+                    Padding="2"
+                    BackgroundColor="Grey"
+                    BorderColor="Aquamarine"
+                    HeightRequest="100"
+                    HorizontalOptions="Center"
+                    WidthRequest="100">
+                    <Image Aspect="AspectFit" Source="{Binding CambioncleStateSource.state, Converter={StaticResource convvomeandfass}}" />
                 </Frame>
-                <Image Aspect="AspectFit" HeightRequest="100" Source="{Binding CambionimageSource}"/>
-                <Label Grid.Row="1" HorizontalOptions="Center" Text="{Binding CambionstateString}" FontAttributes="Bold"/>
-                <Label  Text="{Binding CambionTimeLeftString, StringFormat='火卫二:{0}'}" 
-                        Grid.Row="2" HorizontalOptions="Center" />
+                <Image
+                    Aspect="AspectFit"
+                    HeightRequest="100"
+                    Source="{Binding CambioncleStateSource.state}" />
+                <Label
+                    Grid.Row="1"
+                    FontAttributes="Bold"
+                    HorizontalOptions="Center"
+                    Text="{Binding CambioncleStateSource.state}" />
+                <Label
+                    Grid.Row="2"
+                    HorizontalOptions="Center"
+                    Text="{Binding CambionTimeLeftString, StringFormat='火卫二:{0}'}" />
             </Grid>
             <Grid RowDefinitions="2*,*,*">
-                <Frame HeightRequest="100" WidthRequest="100" Margin="8" Padding="2" HorizontalOptions="Center" BackgroundColor="DarkCyan" BorderColor="Aqua">
-                    <Image Aspect="AspectFit" Source="{Binding VallisimageSource}"/>
+                <Frame
+                    Margin="8"
+                    Padding="2"
+                    BackgroundColor="DarkCyan"
+                    BorderColor="Aqua"
+                    HeightRequest="100"
+                    HorizontalOptions="Center"
+                    WidthRequest="100">
+                    <Image Aspect="AspectFit" Source="{Binding ValliscleStateSource.isWarm, Converter={StaticResource booltoimageWarmandCold}}" />
                 </Frame>
-                <Label Grid.Row="1" HorizontalOptions="Center" Text="{Binding VallisstateString}" FontAttributes="Bold"/>
-                <Label  Text="{Binding VallisTimeLeftString, StringFormat='金星:{0}'}"                         
-                        Grid.Row="2" HorizontalOptions="Center" />
+                <Label
+                    Grid.Row="1"
+                    FontAttributes="Bold"
+                    HorizontalOptions="Center"
+                    Text="{Binding ValliscleStateSource.state}" />
+                <Label
+                    Grid.Row="2"
+                    HorizontalOptions="Center"
+                    Text="{Binding VallisTimeLeftString, StringFormat='金星:{0}'}" />
             </Grid>
             <Grid RowDefinitions="2*,*,*">
-                <Frame HeightRequest="100" WidthRequest="100" Margin="8" Padding="2" HorizontalOptions="Center" BackgroundColor="BurlyWood">
-                    <Image Aspect="AspectFit" Source="{Binding ZarimanimageSource}" />
+                <Frame
+                    Margin="8"
+                    Padding="2"
+                    BackgroundColor="BurlyWood"
+                    HeightRequest="100"
+                    HorizontalOptions="Center"
+                    WidthRequest="100">
+                    <Image Aspect="AspectFit" Source="{Binding ZarimancycleStateSource.isCorpus, Converter={StaticResource booltoimageCorpusandGrineer}}" />
                 </Frame>
 
-                <Label Grid.Row="1" HorizontalOptions="Center" Text="{Binding ZarimanstateString}" FontAttributes="Bold"/>
-                <Label  Text="{Binding ZarimanTimeLeftString, StringFormat='扎里曼{0}'}"                  
-                        Grid.Row="2" HorizontalOptions="Center" />
+                <Label
+                    Grid.Row="1"
+                    FontAttributes="Bold"
+                    HorizontalOptions="Center"
+                    Text="{Binding ZarimancycleStateSource.state}" />
+                <Label
+                    Grid.Row="2"
+                    HorizontalOptions="Center"
+                    Text="{Binding ZarimanTimeLeftString, StringFormat='扎里曼{0}'}" />
             </Grid>
         </FlexLayout>
-        <Grid Grid.Row="0" Grid.Column="1" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto" ColumnDefinitions="*,2*"  Padding="8">
-            <Label Grid.Row="0" Grid.Column="0" Margin="0,2,0,2" VerticalOptions="Center" Text="Boss:"/>
-            <Label Grid.Row="0" Grid.Column="1" Margin="0,2,0,2" VerticalOptions="Center" Text="{Binding SortieData.boss}"/>
-            <Label Grid.Row="1" Grid.Column="0" Margin="0,2,0,2" VerticalOptions="Center" Text="{Binding SortieData.variants[0].missionType}"/>
-            <Label Grid.Row="1" Grid.Column="1" Margin="0,2,0,2" VerticalOptions="Center" Text="{Binding SortieData.variants[0].node}"/>
-            <Label Grid.Row="2" Grid.ColumnSpan="2" Margin="0,2,0,2" VerticalOptions="Center" Text="{Binding SortieData.variants[0].modifier}"/>
+        <Grid
+            Grid.Row="0"
+            Grid.Column="1"
+            Padding="8"
+            ColumnDefinitions="*,2*"
+            RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto">
+            <Label
+                Grid.Row="0"
+                Grid.Column="0"
+                Margin="0,2,0,2"
+                Text="Boss:"
+                VerticalOptions="Center" />
+            <Label
+                Grid.Row="0"
+                Grid.Column="1"
+                Margin="0,2,0,2"
+                Text="{Binding SortieData.boss}"
+                VerticalOptions="Center" />
+            <Label
+                Grid.Row="1"
+                Grid.Column="0"
+                Margin="0,2,0,2"
+                Text="{Binding SortieData.variants[0].missionType}"
+                VerticalOptions="Center" />
+            <Label
+                Grid.Row="1"
+                Grid.Column="1"
+                Margin="0,2,0,2"
+                Text="{Binding SortieData.variants[0].node}"
+                VerticalOptions="Center" />
+            <Label
+                Grid.Row="2"
+                Grid.ColumnSpan="2"
+                Margin="0,2,0,2"
+                Text="{Binding SortieData.variants[0].modifier}"
+                VerticalOptions="Center" />
 
-            <Label Grid.Row="3" Grid.Column="0" Margin="0,2,0,2"  VerticalOptions="Center" Text="{Binding SortieData.variants[1].missionType}"/>
-            <Label Grid.Row="3" Grid.Column="1" Margin="0,2,0,2" VerticalOptions="Center" Text="{Binding SortieData.variants[1].node}"/>
-            <Label Grid.Row="4" Grid.ColumnSpan="2" Margin="0,2,0,2" VerticalOptions="Center" Text="{Binding SortieData.variants[1].modifier}"/>
+            <Label
+                Grid.Row="3"
+                Grid.Column="0"
+                Margin="0,2,0,2"
+                Text="{Binding SortieData.variants[1].missionType}"
+                VerticalOptions="Center" />
+            <Label
+                Grid.Row="3"
+                Grid.Column="1"
+                Margin="0,2,0,2"
+                Text="{Binding SortieData.variants[1].node}"
+                VerticalOptions="Center" />
+            <Label
+                Grid.Row="4"
+                Grid.ColumnSpan="2"
+                Margin="0,2,0,2"
+                Text="{Binding SortieData.variants[1].modifier}"
+                VerticalOptions="Center" />
 
-            <Label Grid.Row="5" Grid.Column="0" Margin="0,2,0,2" VerticalOptions="Center" Text="{Binding SortieData.variants[2].missionType}"/>
-            <Label Grid.Row="5" Grid.Column="1" Margin="0,2,0,2" VerticalOptions="Center" Text="{Binding SortieData.variants[2].node}"/>
-            <Label Grid.Row="6" Grid.ColumnSpan="2" Margin="0,2,0,2" VerticalOptions="Center" Text="{Binding SortieData.variants[2].modifier}"/>
+            <Label
+                Grid.Row="5"
+                Grid.Column="0"
+                Margin="0,2,0,2"
+                Text="{Binding SortieData.variants[2].missionType}"
+                VerticalOptions="Center" />
+            <Label
+                Grid.Row="5"
+                Grid.Column="1"
+                Margin="0,2,0,2"
+                Text="{Binding SortieData.variants[2].node}"
+                VerticalOptions="Center" />
+            <Label
+                Grid.Row="6"
+                Grid.ColumnSpan="2"
+                Margin="0,2,0,2"
+                Text="{Binding SortieData.variants[2].modifier}"
+                VerticalOptions="Center" />
         </Grid>
 
-        <Grid Grid.Row="0" Grid.Column="2" RowDefinitions="Auto,Auto,Auto,Auto" ColumnDefinitions="*,2*" Padding="4">
-            <Label Grid.Row="0" Grid.Column="0" VerticalOptions="Center" Text="Boss:"/>
-            <Label Grid.Row="0" Grid.Column="1" VerticalOptions="Center" Text="{Binding ArchonHuntData.boss}"/>
-            <Label Grid.Row="1" Grid.Column="0" VerticalOptions="Center" Text="{Binding ArchonHuntData.missions[0].type}"/>
-            <Label Grid.Row="1" Grid.Column="1" VerticalOptions="Center" Text="{Binding ArchonHuntData.missions[0].node}"/>
-            <Label Grid.Row="2" Grid.Column="0" VerticalOptions="Center" Text="{Binding ArchonHuntData.missions[1].type}"/>
-            <Label Grid.Row="2" Grid.Column="1" VerticalOptions="Center" Text="{Binding ArchonHuntData.missions[1].node}"/>
-            <Label Grid.Row="3" Grid.Column="0" VerticalOptions="Center" Text="{Binding ArchonHuntData.missions[2].type}"/>
-            <Label Grid.Row="3" Grid.Column="1" VerticalOptions="Center" Text="{Binding ArchonHuntData.missions[2].node}"/>
+        <Grid
+            Grid.Row="0"
+            Grid.Column="2"
+            Padding="4"
+            ColumnDefinitions="*,2*"
+            RowDefinitions="Auto,Auto,Auto,Auto">
+            <Label
+                Grid.Row="0"
+                Grid.Column="0"
+                Text="Boss:"
+                VerticalOptions="Center" />
+            <Label
+                Grid.Row="0"
+                Grid.Column="1"
+                Text="{Binding ArchonHuntData.boss}"
+                VerticalOptions="Center" />
+            <Label
+                Grid.Row="1"
+                Grid.Column="0"
+                Text="{Binding ArchonHuntData.missions[0].type}"
+                VerticalOptions="Center" />
+            <Label
+                Grid.Row="1"
+                Grid.Column="1"
+                Text="{Binding ArchonHuntData.missions[0].node}"
+                VerticalOptions="Center" />
+            <Label
+                Grid.Row="2"
+                Grid.Column="0"
+                Text="{Binding ArchonHuntData.missions[1].type}"
+                VerticalOptions="Center" />
+            <Label
+                Grid.Row="2"
+                Grid.Column="1"
+                Text="{Binding ArchonHuntData.missions[1].node}"
+                VerticalOptions="Center" />
+            <Label
+                Grid.Row="3"
+                Grid.Column="0"
+                Text="{Binding ArchonHuntData.missions[2].type}"
+                VerticalOptions="Center" />
+            <Label
+                Grid.Row="3"
+                Grid.Column="1"
+                Text="{Binding ArchonHuntData.missions[2].node}"
+                VerticalOptions="Center" />
         </Grid>
-        <Grid Grid.Row="1" >
-            <Image HeightRequest="200">
-                <Image.Source>
-                    <UriImageSource Uri="{Binding NewsData[0].imageLink}" CacheValidity="10:00:00:00"/>
-                </Image.Source>
-            </Image>
-            <Label Text="{Binding NewsData[0].message}"/>
+        <Grid Grid.Row="1">
+            <CollectionView ItemsSource="{Binding NewsData}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="model:news">
+                        <HorizontalStackLayout>
+                            <Grid RowDefinitions="Auto,Auto">
+                                <Image
+                                    Grid.Row="0"
+                                    HeightRequest="200"
+                                    HorizontalOptions="Center">
+                                    <Image.Source>
+                                        <UriImageSource CacheValidity="10:00:00:00" Uri="{Binding imageLink}" />
+                                    </Image.Source>
+                                </Image>
+                                <Label
+                                    Grid.Row="1"
+                                    HorizontalOptions="Center"
+                                    Text="{Binding message}" />
+                            </Grid>
+                        </HorizontalStackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
         </Grid>
     </Grid>
 
-    
+
 
 </ContentPage>
