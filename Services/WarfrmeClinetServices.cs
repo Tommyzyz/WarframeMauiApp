@@ -1,7 +1,5 @@
 ﻿
 
-using WarframeMauiApp.Models;
-
 namespace WarframeMauiApp.Services;
 
 
@@ -70,21 +68,19 @@ public class WarfrmeClinetServices
 
         var responseData = await httpClient.GetAsync(uri);
 
-        var content = await responseData.Content.ReadAsStringAsync();
+        if (responseData.IsSuccessStatusCode)
+        {
+            var content = await responseData.Content.ReadAsStringAsync();
 
-        return JsonSerializer.Deserialize<T>(content);
+            return JsonSerializer.Deserialize<T>(content);
+        }
+        else
+        {
+            return default;
+        }
 
-    }
-
-    private async Task<ObservableCollection<T>> GetWarframeDateListAsync<T>(Uri uri)
-    {
-
-        var responseData = await httpClient.GetAsync(uri);
-
-        var content = await responseData.Content.ReadAsStringAsync();
-
-        return JsonSerializer.Deserialize<ObservableCollection<T>>(content);
 
     }
+
 
 }

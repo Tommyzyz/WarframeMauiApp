@@ -15,6 +15,14 @@
         Route="MainPage"
         Shell.NavBarIsVisible="true" />
     <ShellContent
+        Title="Messions"
+        ContentTemplate="{DataTemplate views:MessionPage}"
+        Icon="{FontImage Color=Black,
+                         Glyph=&#xE7C3;,
+                         FontFamily={StaticResource FluentIcons}}"
+        Route="MessionPage"
+        Shell.NavBarIsVisible="true" />
+    <ShellContent
         Title="Localization"
         ContentTemplate="{DataTemplate views:LocalizationPage}"
         Icon="iconlocalization.png"

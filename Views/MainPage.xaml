@@ -3,21 +3,15 @@
     x:Class="WarframeMauiApp.Views.MainPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     xmlns:model="clr-namespace:WarframeMauiApp.Models"
     xmlns:valueConverters="clr-namespace:ValueConverters;assembly=ValueConverters"
     xmlns:vm="clr-namespace:WarframeMauiApp.ViewModels"
     x:DataType="vm:MainViewModel">
 
     <ContentPage.Resources>
-        <ControlTemplate x:Key="CardViewControlTemplate">
-            <Frame
-                Padding="8"
-                BackgroundColor="Aquamarine"
-                BorderColor="Beige"
-                CornerRadius="5"
-                HasShadow="True"
-                HorizontalOptions="Center"
-                VerticalOptions="Center" />
+        <ControlTemplate x:Key="MissionViewControlTemplate" x:DataType="model:Mission">
+            <Label Text="{Binding node}" />
         </ControlTemplate>
         <valueConverters:BoolToImageSourceConverter
             x:Key="booltoimagedayandnignt"
