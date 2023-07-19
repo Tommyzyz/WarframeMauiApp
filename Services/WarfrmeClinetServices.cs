@@ -1,5 +1,7 @@
 ﻿
 
+using WarframeMauiApp.Models;
+
 namespace WarframeMauiApp.Services;
 
 
@@ -18,9 +20,14 @@ public class WarfrmeClinetServices
     public archonHunt archonHuntdata;
     public sortie sortiedata;
 
+    public List<news> newsdata;
 
 
 
+    public async Task UpdateNewsdata()
+    {
+        newsdata = await GetWarframeDateAsync<List<news>>(WarframeAPIUri.newsUri);
+    }
 
     public async Task UpdateSortiedata()
     {
@@ -63,11 +70,20 @@ public class WarfrmeClinetServices
 
         var responseData = await httpClient.GetAsync(uri);
 
-        //responseData.EnsureSuccessStatusCode();
-
         var content = await responseData.Content.ReadAsStringAsync();
 
         return JsonSerializer.Deserialize<T>(content);
+
+    }
+
+    private async Task<List<T>> GetWarframeDateListAsync<T>(Uri uri)
+    {
+
+        var responseData = await httpClient.GetAsync(uri);
+
+        var content = await responseData.Content.ReadAsStringAsync();
+
+        return JsonSerializer.Deserialize<List<T>>(content);
 
     }
 

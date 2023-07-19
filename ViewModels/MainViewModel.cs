@@ -1,5 +1,5 @@
 ﻿using System.Timers;
-
+using WarframeMauiApp.Models;
 
 namespace WarframeMauiApp.ViewModels;
 
@@ -11,7 +11,7 @@ public partial class MainViewModel : BaseViewModel
     public MainViewModel(WarfrmeClinetServices services)
     {
         Services = services;
-        GetAllWorldStateAsync();
+        GetAllStateAsync();
         var timerSecond = new System.Timers.Timer(1000);
         timerSecond.Elapsed += Timer_Elapsed;
         timerSecond.Start();
@@ -86,16 +86,27 @@ public partial class MainViewModel : BaseViewModel
 
     [ObservableProperty]
     private sortie sortieData;
+
+
+    [ObservableProperty]
+    private List<news> newsData;
     #endregion
 
 
-    
-    public async void GetAllWorldStateAsync()
+
+    public async void GetAllStateAsync()
     {
         await GetArchonHuntDataAsync();
         await GetSortieDataAsync();
-
+        await GetNewsDataAsync();
     }
+    //新闻
+    public async Task GetNewsDataAsync()
+    {
+        await Services.UpdateNewsdata();
+        NewsData = Services.newsdata;
+    }
+
     //执行官
     public async Task GetArchonHuntDataAsync()
     {

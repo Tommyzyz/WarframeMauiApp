@@ -2,8 +2,10 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
 			 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 			 xmlns:vm="clr-namespace:WarframeMauiApp.ViewModels"
+             xmlns:valueConverters="clr-namespace:ValueConverters;assembly=ValueConverters"
 			 x:Class="WarframeMauiApp.Views.MainPage"
 			 x:DataType="vm:MainViewModel">
+
     <ContentPage.Resources>
         <ControlTemplate x:Key="CardViewControlTemplate">
             <Frame BackgroundColor="Aquamarine"
@@ -14,17 +16,13 @@
                    HorizontalOptions="Center"
                    VerticalOptions="Center">
 
-                <Grid RowDefinitions="2*,*,*">
-                        <Image Aspect="AspectFit"  Source="{Binding ZarimanimageSource}"/>
-                        <Label Grid.Row="1" HorizontalOptions="Center" Text="{Binding ZarimanstateString}" FontAttributes="Bold"/>
-                        <Label  Text="{Binding ZarimanTimeLeftString, StringFormat='扎里曼{0}'}"                  
-                        Grid.Row="2" HorizontalOptions="Center" />
-                </Grid>
+
             </Frame>
         </ControlTemplate>
+        <valueConverters:BoolToImageSourceConverter x:Key="booltoimagedayandnignt" TrueValue="sunriseovermountains.png" FalseValue="shootingstar.png"/>
     </ContentPage.Resources>
 
-    <Grid ColumnDefinitions="5*,*,*" RowDefinitions="*,*">
+    <Grid ColumnDefinitions="*,Auto,Auto" RowDefinitions="Auto,Auto">
         <FlexLayout JustifyContent="SpaceAround" AlignItems="Center" Wrap="Wrap" BackgroundColor="Crimson">
             <Grid RowDefinitions="2*,*,*">
                 <Image Aspect="AspectFit" HeightRequest="100"  Source="{Binding EarthimageSource}"/>
@@ -67,8 +65,8 @@
         </FlexLayout>
         <Grid Grid.Row="0" Grid.Column="1" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto" ColumnDefinitions="*,2*"  Padding="8">
             <Label Grid.Row="0" Grid.Column="0" Margin="0,2,0,2" VerticalOptions="Center" Text="Boss:"/>
-            <Label Grid.Row="0" Grid.Column="1" Margin="0,2,0,2" VerticalOptions="Center" Text="{Binding SortieData.boss}" BackgroundColor="Aquamarine"/>
-            <Label Grid.Row="1" Grid.Column="0" Margin="0,2,0,2" VerticalOptions="Center" Text="{Binding SortieData.variants[0].missionType}" BackgroundColor="Beige"/>
+            <Label Grid.Row="0" Grid.Column="1" Margin="0,2,0,2" VerticalOptions="Center" Text="{Binding SortieData.boss}"/>
+            <Label Grid.Row="1" Grid.Column="0" Margin="0,2,0,2" VerticalOptions="Center" Text="{Binding SortieData.variants[0].missionType}"/>
             <Label Grid.Row="1" Grid.Column="1" Margin="0,2,0,2" VerticalOptions="Center" Text="{Binding SortieData.variants[0].node}"/>
             <Label Grid.Row="2" Grid.ColumnSpan="2" Margin="0,2,0,2" VerticalOptions="Center" Text="{Binding SortieData.variants[0].modifier}"/>
 
@@ -91,7 +89,14 @@
             <Label Grid.Row="3" Grid.Column="0" VerticalOptions="Center" Text="{Binding ArchonHuntData.missions[2].type}"/>
             <Label Grid.Row="3" Grid.Column="1" VerticalOptions="Center" Text="{Binding ArchonHuntData.missions[2].node}"/>
         </Grid>
-
+        <Grid Grid.Row="1" >
+            <Image HeightRequest="200">
+                <Image.Source>
+                    <UriImageSource Uri="{Binding NewsData[0].imageLink}" CacheValidity="10:00:00:00"/>
+                </Image.Source>
+            </Image>
+            <Label Text="{Binding NewsData[0].message}"/>
+        </Grid>
     </Grid>
 
     

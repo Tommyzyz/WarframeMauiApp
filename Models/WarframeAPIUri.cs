@@ -11,5 +11,6 @@ public static class WarframeAPIUri
     public static readonly Uri nightwaveUri = new("https://api.warframestat.us/pc/zh/nightwave/");
     public static readonly Uri sortieUri = new("https://api.warframestat.us/pc/zh/sortie/");
     public static readonly Uri archonHuntUri = new("https://api.warframestat.us/pc/zh/archonHunt/");
+    public static readonly Uri newsUri = new("https://api.warframestat.us/pc/zh/news/");
 
 }
